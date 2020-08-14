@@ -16,31 +16,28 @@ def index(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return HttpResponse("user authenticated")
+        return redirect('index')
     
     if request.method == "GET":
         return render(request, "webapp/login.html")
-    print("chegou aqui")
     user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
-    print("passou pelo user: ", user)
+    print("User: ", user)
     if user is not None:
         auth_login(request, user)
-        return HttpResponse(request.POST["username"] +" have logged succesfuly")
-    return HttpResponse("deu ruim no login")
+        return redirect('index')
+    return render(request, "webapp/login.html", {"issue": "wrg cred"}) #render login, saying it has wrong credentials
 
     
 
 def logout(request):
     if request.user.is_authenticated:
-        print("antes: ", request.user.is_authenticated)
         django_logout(request)
-        print("depois: ", request.user.is_authenticated)
-    return HttpResponse("user loged out")
+    return HttpResponse("user logged out")
 
 
 def register(request):
     if request.user.is_authenticated:
-        return render(request, "webapp/index.html")
+        return redirect('index')
 
     if request.method == 'GET':
         return render(request, "webapp/registration.html")
@@ -67,11 +64,11 @@ def register(request):
     #All info is ok, so the user can be created
     user = User.objects.create_user(username=form["username"], password=form["password"],
                                     email=form["email"], first_name=form["f_name"], last_name=form["l_name"])       
-    return HttpResponse("success")
+    return HttpResponse("success - user created")
 
 
 
-#def home(request):
+
     
 
     
