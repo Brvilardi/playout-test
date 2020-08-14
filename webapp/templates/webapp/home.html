@@ -1,0 +1,30 @@
+{% extends "webapp/nav-bar.html"%}
+
+    {% block content %}
+     <div class="container">
+
+        <div class="video-upload">
+            <form action="{% url 'video_upload' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <h1 class="h3 mb-3 font-weight-normal">Video upload</h1>
+          
+                <label for="title" class="sr-only">Title</label>
+                <!-- <input name="title" type="text" id="title" class="form-control" placeholder="Title" required autofocus> --> 
+                {{ form.title }}
+           
+                                  
+                <label for="video" class="sr-only">Video</label>
+                <!-- <input name="video" type="file" id="video" class="form-control" required> --> 
+                {{ form.file }}
+                <div style="visibility: hidden; font-size: x-small;">E</div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit!</button>
+              </form>
+        </div>
+     </div>
+    {% endblock %}
+      
+
+
+</body>
+</html>

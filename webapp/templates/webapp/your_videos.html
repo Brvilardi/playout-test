@@ -1,0 +1,15 @@
+{% extends "webapp/nav-bar.html" %}
+
+{% block content %}
+
+<h2>Your videos:</h2>
+{% if videos %}
+    {% for video in videos %}
+    <h2>Title: {{video.title}}</h2>
+    <video src="{{video.video.name}}"></video>
+    <br>
+    {% endfor %}
+{% else %}
+    <h3>No videos yet!</h3>
+{% endif %}
+{% endblock %}
