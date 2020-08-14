@@ -24,7 +24,7 @@ def login(request):
     print("User: ", user)
     if user is not None:
         auth_login(request, user)
-        return redirect('index')
+        return render(request, "webapp/success.html", {"message" :"logged in successfully!"})
     return render(request, "webapp/login.html", {"issue": "wrg cred"}) #render login, saying it has wrong credentials
 
     
@@ -32,7 +32,7 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         django_logout(request)
-    return HttpResponse("user logged out")
+    return render(request, "webapp/success.html",{"message": "You've logged out"})
 
 
 def register(request):
@@ -64,7 +64,7 @@ def register(request):
     #All info is ok, so the user can be created
     user = User.objects.create_user(username=form["username"], password=form["password"],
                                     email=form["email"], first_name=form["f_name"], last_name=form["l_name"])       
-    return HttpResponse("success - user created")
+    return render(request, "webapp/success.html", {"message": "You've successfully created an account"})
 
 
 
