@@ -16,7 +16,7 @@
 <body>
     
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><img src="{% static 'webapp/logo.png' %}" alt="Bruno's Corp logo" height="90px"></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'webapp/logo.png' %}" alt="Bruno's Corp logo" height="90px"></a>
         
         <span class="navbar-text" style="font-size: x-large;">
              Hello, {{ user.username }}
@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'your_videos' %}">Your videos <span class="sr-only">(current)</span></a>

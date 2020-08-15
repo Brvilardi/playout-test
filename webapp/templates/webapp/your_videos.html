@@ -6,7 +6,8 @@
 {% if videos %}
     {% for video in videos %}
     <h2>Title: {{video.title}}</h2>
-    <video src="{{video.video.name}}"></video>
+    <video preload="auto" src="{{video.video_url}}" width="320" height="240" controls type="video/mp4"></video>
+    
     <br>
     {% endfor %}
 {% else %}

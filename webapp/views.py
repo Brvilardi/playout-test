@@ -85,7 +85,11 @@ def video_upload(request):
         print("posts: ", request.POST.keys())   
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            video = Video(video=request.FILES['file'], title=request.POST["title"], ownear=request.user)
+            video_file = request.FILES['file']
+            n_videos = Video.objects.filter(ownear=request.user).count()
+            video_file.name = request.user.username + str(n_videos) + ".mp4"
+            print("file name: ", video_file.name)
+            video = Video(video=video_file, title=request.POST["title"], ownear=request.user, video_url=f"https://s3.amazonaws.com/bruno.video/videos/{video_file.name}")
             video.save()
             return render(request, "webapp/success.html", {"message": "video uploaded"})
         return HttpResponse("something went wrong with your upload =(")
