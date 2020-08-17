@@ -1,15 +1,45 @@
 {% extends "webapp/nav-bar.html" %}
+{% load static %}
+
 
 {% block content %}
 
+<script>
+
+    function set_video_url(element){
+        let url = element.querySelector(".url").innerHTML;
+        console.log(url);
+        element.querySelector(".video_static").setAttribute("src", url);
+        
+
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function(){
+        var videos = document.querySelector("#videos").querySelectorAll(".video_name");
+        console.log(videos);
+        videos.forEach(set_video_url);
+        
+
+    });
+
+</script>
+
+
+
+
 <h2>Your videos:</h2>
 {% if videos %}
-    {% for video in videos %}
-    <h2>Title: {{video.title}}</h2>
-    <video preload="auto" src="{{video.video_url}}" width="320" height="240" controls type="video/mp4"></video>
-    
-    <br>
-    {% endfor %}
+    <div id="videos">
+        {% for video in videos %}
+            <div class="video_name">
+                <h2 class="title">Title: {{video.title}}</h2>
+                <h2 class="url">{{video.video.name}}</h2>
+                <video class="video_static" preload="auto" src="{% static 'videos/bruno2.mp4' %}" width="320" height="240" controls type="video/mp4"></video>    
+                <br>
+            </div>
+        {% endfor %}
+    </div>
 {% else %}
     <h3>No videos yet!</h3>
 {% endif %}
