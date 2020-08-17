@@ -1,2 +1,3 @@
 playoutvenv/
 .vscode/
+db.sqlite3
