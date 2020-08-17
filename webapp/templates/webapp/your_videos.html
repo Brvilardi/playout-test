@@ -4,27 +4,6 @@
 
 {% block content %}
 
-<script>
-
-    function set_video_url(element){
-        let url = element.querySelector(".url").innerHTML;
-        console.log(url);
-        element.querySelector(".video_static").setAttribute("src", url);
-        
-
-    }
-
-
-    document.addEventListener("DOMContentLoaded", function(){
-        var videos = document.querySelector("#videos").querySelectorAll(".video_name");
-        console.log(videos);
-        videos.forEach(set_video_url);
-        
-
-    });
-
-</script>
-
 
 
 
@@ -34,8 +13,9 @@
         {% for video in videos %}
             <div class="video_name">
                 <h2 class="title">Title: {{video.title}}</h2>
-                <h2 class="url">{{video.video.name}}</h2>
-                <video class="video_static" preload="auto" src="{% static 'videos/bruno2.mp4' %}" width="320" height="240" controls type="video/mp4"></video>    
+                {% with ''|add:video.video.name as image_static %}
+                <video class="video_static" preload="auto" src="{% static image_static %}" width="320" height="240" controls type="video/mp4"></video>    
+                {% endwith %}
                 <br>
             </div>
         {% endfor %}
