@@ -8,5 +8,6 @@ urlpatterns = [
     path("logout", views.logout, name="logout"),
     path("home", views.home, name="home"),
     path("video-upload", views.video_upload, name="video_upload"),
-    path("your-videos", views.your_videos, name="your_videos")
+    path("your-videos", views.your_videos, name="your_videos"),
+    path("debug", views.debug, name="debug")
 ]

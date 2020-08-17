@@ -103,6 +103,10 @@ def your_videos(request):
     return render(request, "webapp/your_videos.html", {"videos": videos})
 
 
+def debug(request):
+    raise Exception("Entrou em debug")
+
+
 
 
 
