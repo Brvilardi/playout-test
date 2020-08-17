@@ -9,14 +9,17 @@
 
 <h2>Your videos:</h2>
 {% if videos %}
-    <div id="videos">
+    <div id="videos" class="d-flex justify-content-start" style="display: flex; flex-wrap: wrap; align-items: center;">
+
         {% for video in videos %}
-            <div class="video_name">
-                <h2 class="title">Title: {{video.title}}</h2>
+
+            <div class="card" style="width: 18rem;  margin: 20px;">
+                <div class="card-title" style="padding: 5px;">
+                    <p class="card-text" style="font-size: x-large; text-align: left;">Title: {{video.title}}</p>
+                </div>
                 {% with ''|add:video.video.name as image_static %}
-                <video class="video_static" preload="auto" src="{% static image_static %}" width="320" height="240" controls type="video/mp4"></video>    
+                    <video class="card-img-top" preload="auto" src="{% static image_static %}" width="320" height="240" controls type="video/mp4"></video>    
                 {% endwith %}
-                <br>
             </div>
         {% endfor %}
     </div>
